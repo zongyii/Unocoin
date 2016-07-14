@@ -1,0 +1,26 @@
+<ion-view title="UNOChat Coin">
+    <ion-content padding="true" class="has-header">
+        <form name="loginForm" ng-submit="checkout(loginForm.$valid)" novalidate>
+            <ion-list>
+                <label class="item item-input item-stacked-label">
+                <span class="input-label">UID</span>
+                <input type="text" placeholder="UID" name="uid" ng-model="user.uid" required>
+                </label>
+                <div class="error" ng-show="(loginForm.uid.$dirty || submitted) && loginForm.uid.$invalid" style="color: red;">UID is required.</div>
+                <label class="item item-input item-stacked-label">
+                <span class="input-label">UserName</span>
+                <input type="text" placeholder="UserName" name="username" ng-model="user.username" required>
+                </label>
+                <div class="error" ng-show="(loginForm.username.$dirty || submitted) && loginForm.username.$invalid" style="color: red;">UserName is required.</div>
+                <label class="item item-input item-stacked-label">
+                <span class="input-label">Amount</span>
+                <input type="text" placeholder="Amount" name="amount" ng-model="user.amount" required>
+                </label>
+                <div class="error" ng-show="(loginForm.amount.$dirty || submitted) && loginForm.amount.$invalid" style="color: red;">Amount is required.</div>
+
+                <div class="spacer" style="height: 40px;"></div>
+                <button type="submit" class="button button-positive button-block">CheckOut</button>
+            </ion-list>
+        </form>            
+    </ion-content>
+</ion-view>
