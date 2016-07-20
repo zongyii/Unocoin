@@ -4,7 +4,20 @@ require_once APPPATH.'/libraries/vendor/autoload.php';
 
 class My_stripe {
 	public function generate_token($cc_number, $cvc, $exp_month, $exp_year) {
-		\Stripe\Stripe::setApiKey("sk_test_XeXKEMY62hqQkpDN4VJYb3b2");	//Client Secret Key
+		$stripe_mode = $this->config->item('stripe_mode');
+		if(!isset($stripe_mode)) {
+			$stripe_mode = FALSE;
+		}
+		if($stripe_mode) {
+			$stripe_public_key = $this->config->item("stripe_live_public_key");
+			$stripe_secret_key = $this->config->item("stripe_live_secret_key");
+		} else {
+			$stripe_public_key = $this->config->item("stripe_dev_public_key");
+			$stripe_secret_key = $this->config->item("stripe_dev_secret_key");
+		}
+
+
+		\Stripe\Stripe::setApiKey($stripe_secret_key);	//Client Secret Key
 
 		try {
 			$response = \Stripe\Token::create(array(
