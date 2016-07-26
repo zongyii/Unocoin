@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('form_validation', 'user_agent', 'mongo_db');
+$autoload['libraries'] = array('form_validation', 'session', 'user_agent', 'mongo_db', 'ion_auth', 'email');
 
 
 /*
@@ -64,7 +64,7 @@ $autoload['libraries'] = array('form_validation', 'user_agent', 'mongo_db');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url', 'form', 'text', 'html', 'download', 'file');
+$autoload['helper'] = array('url', 'form', 'text', 'html', 'download', 'file', 'table');
 
 
 /*
@@ -96,7 +96,7 @@ $autoload['config'] = array();
 |
 */
 
-$autoload['language'] = array();
+$autoload['language'] = array('common', 'menu', 'login', 'setting', 'recharge', 'transaction');
 
 
 /*

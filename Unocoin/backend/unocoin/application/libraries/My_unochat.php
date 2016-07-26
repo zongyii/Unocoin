@@ -2,32 +2,35 @@
 
 class My_unochat {
 
-	protected $api = "http://demo.unochat.io:8080/Server";
+	protected $api = "";
 	
-	protected $mch_name = "Tkpig";
+	protected $mch_name = "";
 	
-	protected $appid = "28";
+	protected $appid = "";
 	
-	protected $appSecret = "2M4g6YBmVR4D8ZzZTdhx";
+	protected $appSecret = "";
 	
-	protected $appkey = "sZQIzvkwCI";
+	protected $appkey = "";
 	
-	protected $mch_appkey = "DYvUZZGa4a";
+	protected $mch_appkey = "";
 	
-	protected $mch_appSecret = "v3scNtmeIYJmfjys8RVA";
+	protected $mch_appSecret = "";
 
 
 
-	public function init($appkey, $appSecret, $mch_appkey, $mch_appSecret) {
+	public function init($appkey, $appSecret, $mch_appkey = '', $mch_appSecret = '') {
 
 		$this->appkey = $appkey;
 		$this->appSecret = $appSecret;
-		$this->mch_appkey = $mch_appkey;
+		if(!empty($mch_appkey))
+			$this->mch_appkey = $mch_appkey;
+		if(!empty($mch_appSecret))
 		$this->mch_appSecret = $mch_appSecret;
 	}
 	
-	public function auth(){
+	public function auth() {
 		$auth = base64_encode($this->mch_appkey.":".md5($this->mch_appSecret));
+		
 		$head = array(
 			"Content-Type:application/json",
 			"Authorization:Basic $auth"
@@ -94,22 +97,25 @@ class My_unochat {
 					"remark"		=> "测试付款"
 				);
 
+
 				$output = $this->postcurl("/Pay/submitWithoutCode",json_encode($data),$this->auth());
 				
 			break;
 			case "recharge":
 				$data = array(
 					"unochat_uid"	=> $userInfo['id'],
-					"order_no"		=> time(),
+					"order_no"		=> "d_tran_".time(),
 					"amount"		=> $amount,
 					"order_time"	=> date("Y-m-d H:i:s"),
 					"remark"		=> "测试付款"
 				);
+
+
 				$output = $this->postcurl("/Pay/recharge",json_encode($data),$this->auth());
 			break;
 		}
 		$output = json_decode($output);
-		return array($this->callmsg($output->code));
+		return $this->callmsg($output->code);
 	}
 
 

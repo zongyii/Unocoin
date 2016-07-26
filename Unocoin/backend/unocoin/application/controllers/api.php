@@ -5,13 +5,6 @@ class Api extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 
-		// $table['users'] = 'customers';
-		// $table['interface_types'] = 'interface_types';
-		// $table['interface_units'] = 'interface_units';
-		// $table['ai'] = 'ai';
-		// $table['tiles'] = 'tiles';
-		// $table['analog'] = 'analog_V1';
-		// $this->tables  = $table;
 
 		header('Access-Control-Allow-Origin: *');
 		header('Access-Control-Allow-Headers: X-Requested-With, Content-Type');		
