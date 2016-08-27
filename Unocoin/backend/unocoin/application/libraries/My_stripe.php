@@ -3,29 +3,7 @@
 require_once APPPATH.'/libraries/vendor/autoload.php';
 
 class My_stripe {
-	public function generate_token($cc_number, $cvc, $exp_month, $exp_year) {
-		// $stripe_mode = $this->config->item('stripe_mode');
-		// if(!isset($stripe_mode)) {
-		// 	$stripe_mode = FALSE;
-		// }
-		// if($stripe_mode) {
-		// 	$stripe_public_key = $this->config->item("stripe_live_public_key");
-		// 	$stripe_secret_key = $this->config->item("stripe_live_secret_key");
-		// } else {
-		// 	$stripe_public_key = $this->config->item("stripe_dev_public_key");
-		// 	$stripe_secret_key = $this->config->item("stripe_dev_secret_key");
-		// }
-
-		$settings = $this->mongo_db->find_one($this->tables['admin_settings']);		
-		if(isset($settings['_id']) && !empty($settings['_id'])) {
-			$stripe_public_key = $settings['stripe_app_key'];
-			$stripe_secret_key = $settings['stripe_app_secret'];
-
-		} else {
-			return array('status' => FALSE, 'message' => 'Could not connect to the Stripe account.');
-		}
-
-
+	public function generate_token($cc_number, $cvc, $exp_month, $exp_year, $stripe_public_key, $stripe_secret_key) {
 
 		\Stripe\Stripe::setApiKey($stripe_secret_key);	//Client Secret Key
 
@@ -49,6 +27,7 @@ class My_stripe {
 		} catch (Exception $e) {
 			$status = FALSE;
 			$message = $e->getMessage();
+			return array('status' => $status, 'message' => $message);
 		}
 
 		return array('status' => $status, 'message' => $message);

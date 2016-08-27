@@ -21,7 +21,7 @@ class Settings extends CI_Controller {
 			redirect('admin/login', 'refresh');
 		}
 
-		$data_left['category'] = 3;	//Category manage page selected.
+		$data_left['category'] = 2;	//Category manage page selected.
 		$data_left['sub_category'] = 0;	//Sub Category manage page selected.
 		$left_view = $this->load->view('admin/left' , $data_left , true);
 		$data['left'] = $left_view;
@@ -56,6 +56,7 @@ class Settings extends CI_Controller {
 		if(!$this->ion_auth->logged_in()) {
 			$data = array();
 			$data['status'] = FALSE;
+			$data['login'] = TRUE;
 			$data['message'] = $this->lang->line('common_login_prompt_message');
 			echo json_encode($data);			
 		}
@@ -63,6 +64,7 @@ class Settings extends CI_Controller {
 		if(!$this->ion_auth->is_admin()) {
 			$data = array();
 			$data['status'] = FALSE;
+			$data['login'] = TRUE;
 			$data['message'] = $this->lang->line('common_admin_login_prompt_message');
 			echo json_encode($data);
 		}
@@ -111,6 +113,7 @@ class Settings extends CI_Controller {
 		if(!$this->ion_auth->logged_in()) {
 			$data = array();
 			$data['status'] = FALSE;
+			$data['login'] = TRUE;
 			$data['message'] = $this->lang->line('common_login_prompt_message');
 			echo json_encode($data);			
 		}
@@ -118,6 +121,7 @@ class Settings extends CI_Controller {
 		if(!$this->ion_auth->is_admin()) {
 			$data = array();
 			$data['status'] = FALSE;
+			$data['login'] = TRUE;
 			$data['message'] = $this->lang->line('common_admin_login_prompt_message');
 			echo json_encode($data);
 		}
@@ -211,6 +215,7 @@ class Settings extends CI_Controller {
 		if(!$this->ion_auth->logged_in()) {
 			$data = array();
 			$data['status'] = FALSE;
+			$data['login'] = TRUE;
 			$data['message'] = $this->lang->line('common_login_prompt_message');
 			echo json_encode($data);			
 		}
@@ -218,6 +223,7 @@ class Settings extends CI_Controller {
 		if(!$this->ion_auth->is_admin()) {
 			$data = array();
 			$data['status'] = FALSE;
+			$data['login'] = TRUE;
 			$data['message'] = $this->lang->line('common_admin_login_prompt_message');
 			echo json_encode($data);
 		}

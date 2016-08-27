@@ -72,7 +72,7 @@
 					</li>
 					<li>
 						<i class="fa fa-user"></i>
-						<a href="<?php echo site_url('admin/profiles/'); ?>"><?php echo $this->lang->line('menu_admin_settings_label'); ?></a>
+						<a href="<?php echo site_url('admin/settings/'); ?>"><?php echo $this->lang->line('menu_admin_settings_label'); ?></a>
 						</a>
 					</li>					
 				</ul>
@@ -492,6 +492,10 @@
                     $('#change_password_confirm').val('');
                     return false;
                 } else {
+            		if(response.login) {
+            			location.replace(login_url);
+            			return false;
+            		}                 	
                     $('#messages').css('display', 'block');
                     var error_div = "<div class='alert alert-danger'>" + response['message'] + "</div>";
                     $('#messages').html($(error_div));
@@ -540,6 +544,10 @@
                     $('#messages').fadeOut(5000);
                     return false;
                 } else {
+            		if(response.login) {
+            			location.replace(login_url);
+            			return false;
+            		}                 	
                     $('#messages').css('display', 'block');
                     var error_div = "<div class='alert alert-danger'>" + response['message'] + "</div>";
                     $('#messages').html($(error_div));
@@ -588,6 +596,10 @@
                     $('#messages').fadeOut(5000);
                     return false;
                 } else {
+            		if(response.login) {
+            			location.replace(login_url);
+            			return false;
+            		}                	
                     $('#messages').css('display', 'block');
                     var error_div = "<div class='alert alert-danger'>" + response['message'] + "</div>";
                     $('#messages').html($(error_div));

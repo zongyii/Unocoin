@@ -96,7 +96,7 @@ $autoload['config'] = array();
 |
 */
 
-$autoload['language'] = array('common', 'menu', 'login', 'setting', 'recharge', 'transaction');
+$autoload['language'] = array('common', 'menu', 'login', 'setting', 'recharge', 'transaction', 'topup');
 
 
 /*
